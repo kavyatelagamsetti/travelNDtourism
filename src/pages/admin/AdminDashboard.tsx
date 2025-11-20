@@ -4,6 +4,7 @@ import AdminLayout from "@/components/AdminLayout";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Users, Package, TrendingUp, DollarSign } from "lucide-react";
+import { API_ENDPOINTS } from "@/lib/api";
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
@@ -30,7 +31,7 @@ const AdminDashboard = () => {
     try {
       // Fetch users count
       const adminToken = localStorage.getItem('adminToken');
-      const usersResponse = await fetch('http://localhost:5000/api/auth/all-users', {
+      const usersResponse = await fetch(API_ENDPOINTS.AUTH.ALL_USERS, {
         headers: {
           'Authorization': `Bearer ${adminToken}`,
         },

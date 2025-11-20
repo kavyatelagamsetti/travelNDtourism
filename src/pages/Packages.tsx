@@ -8,6 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Calendar, MapPin, Users, Clock, Star, IndianRupee, Wifi, Car, Camera, Mountain, CheckCircle, XCircle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { API_ENDPOINTS } from "@/lib/api";
 
 const Packages = () => {
   const [selectedPackage, setSelectedPackage] = useState(null);
@@ -26,7 +27,7 @@ const Packages = () => {
   const fetchMyBookings = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:5000/api/booking/my-bookings', {
+      const response = await fetch(API_ENDPOINTS.BOOKING.MY_BOOKINGS, {
         headers: {
           'Authorization': `Bearer ${token}`,
         },
@@ -175,7 +176,7 @@ const Packages = () => {
 
       try {
         const token = localStorage.getItem('token');
-        const response = await fetch('http://localhost:5000/api/booking/create', {
+        const response = await fetch(API_ENDPOINTS.BOOKING.CREATE, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

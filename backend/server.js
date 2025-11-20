@@ -41,8 +41,26 @@ app.use((err, req, res, next) => {
 
 const PORT = process.env.PORT || 5000;
 
+const createDefaultAdmin = async () => {
+  try {
+    const existingAdmin = await require('./models/Admin').findOne({ email: 'admin@example.com' });
+    if (!existingAdmin) {
+      const Admin = require('./models/Admin');
+      const admin = new Admin({
+        email: 'admin@example.com',
+        password: 'admin123'
+      });
+      await admin.save();
+      console.log('Default admin created: admin@example.com / admin123');
+    }
+  } catch (error) {
+    console.error('Error creating default admin:', error);
+  }
+};
+
 const startServer = async () => {
   await connectDB();
+  await createDefaultAdmin();
   app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
   });

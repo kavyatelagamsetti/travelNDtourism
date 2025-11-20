@@ -11,6 +11,7 @@ import { CalendarIcon, Users, Phone, Mail, User } from "lucide-react";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
+import { API_ENDPOINTS } from "@/lib/api";
 
 interface BookingFormProps {
   destination: {
@@ -95,7 +96,7 @@ const BookingForm = ({ destination, isOpen, onClose }: BookingFormProps) => {
         totalAmount: calculateTotalAmount()
       };
 
-      const response = await fetch('http://localhost:5000/api/booking/create', {
+      const response = await fetch(API_ENDPOINTS.BOOKING.CREATE, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

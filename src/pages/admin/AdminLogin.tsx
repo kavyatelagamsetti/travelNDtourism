@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Eye, EyeOff, Shield } from "lucide-react";
+import { API_ENDPOINTS } from "@/lib/api";
 
 const AdminLogin = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -20,7 +21,7 @@ const AdminLogin = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:5000/api/admin/login', {
+      const response = await fetch(API_ENDPOINTS.ADMIN.LOGIN, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Search, User, Mail, Phone, Calendar } from "lucide-react";
+import { API_ENDPOINTS } from "@/lib/api";
 
 interface User {
   id: string;
@@ -39,7 +40,7 @@ const UserManagement = () => {
   const fetchUsers = async () => {
     try {
       const adminToken = localStorage.getItem('adminToken');
-      const response = await fetch('http://localhost:5000/api/auth/all-users', {
+      const response = await fetch(API_ENDPOINTS.AUTH.ALL_USERS, {
         headers: {
           'Authorization': `Bearer ${adminToken}`,
         },

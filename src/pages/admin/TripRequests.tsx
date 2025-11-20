@@ -10,6 +10,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Search, Package, Car, Check, X, Eye } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { API_ENDPOINTS } from "@/lib/api";
 
 interface Booking {
   id: string;
@@ -68,7 +69,7 @@ const TripRequests = () => {
   const fetchBookings = async () => {
     try {
       const adminToken = localStorage.getItem('adminToken');
-      const response = await fetch('http://localhost:5000/api/booking/all', {
+      const response = await fetch(API_ENDPOINTS.BOOKING.ALL, {
         headers: {
           'Authorization': `Bearer ${adminToken}`,
         },
@@ -90,7 +91,7 @@ const TripRequests = () => {
   const updateBookingStatus = async (bookingId: string, status: 'approved' | 'rejected', reason?: string) => {
     try {
       const adminToken = localStorage.getItem('adminToken');
-      const response = await fetch(`http://localhost:5000/api/booking/${bookingId}/status`, {
+      const response = await fetch(API_ENDPOINTS.BOOKING.UPDATE_STATUS(bookingId), {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
